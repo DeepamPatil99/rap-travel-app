@@ -1,0 +1,85 @@
+managed implementation in class zbp_i_travel_tab unique;
+strict ( 2 );
+
+define behavior for ZI_TRAVEL_TAB //alias <alias_name>
+persistent table ztravel_header
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  create ( authorization : global );
+  update;
+  delete;
+  field ( numbering : managed ) TravelUUID;
+  field ( readonly ) TravelUUID;
+  association _Booking { create; }
+
+  action ( features : instance ) SubmitTravel result [1] $self;
+  action ( features : instance ) ApproveTravel result [1] $self;
+  action ( features : instance ) RejectTravel result [1] $self;
+
+  determination SetRequestorUser
+  on modify
+  {
+    create;
+  }
+
+  determination SetInitialStatus
+  on modify
+  {
+    create;
+  }
+
+  validation validateDates on save { create; update; field StartDate, EndDate; }
+
+
+  mapping for ztravel_header
+    {
+      TravelUUID         = traveluuid;
+      TravelId           = travel_id;
+      EmployeeId         = employee_id;
+      EmployeeName       = employee_name;
+      StartDate          = start_date;
+      EndDate            = end_date;
+      CurrencyCode       = currency_code;
+      BookingFee         = booking_fee;
+      TotalPrice         = total_price;
+      Status             = status;
+      RequestorUser      = requestor_user;
+      CreatedBy          = created_by;
+      CreatedAt          = created_at;
+      LastChangedBy      = last_changed_by;
+      LastChangedAt      = last_changed_at;
+      LocalLastChangedAt = local_last_changed_at;
+    }
+}
+
+define behavior for zi_booking_tab //alias <alias_name>
+persistent table ztravel_book
+lock dependent by _Travel
+authorization dependent by _Travel
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( numbering : managed ) BookingUuid;
+  field ( readonly ) BookingUuid, TravelUuid;
+  association _Travel;
+
+
+  mapping for ztravel_book
+    {
+      BookingUuid        = booking_uuid;
+      TravelUuid         = travel_uuid;
+      CarrierId          = carrier_id;
+      FlightNo           = flight_no;
+      FlightDate         = flight_date;
+      CurrencyCode       = currency_code;
+      BookingPrice       = booking_price;
+      CreatedBy          = created_by;
+      CreatedAt          = created_at;
+      LastChangedBy      = last_changed_by;
+      LastChangedAt      = last_changed_at;
+      LocalLastChangedAt = local_last_changed_at;
+    }
+}

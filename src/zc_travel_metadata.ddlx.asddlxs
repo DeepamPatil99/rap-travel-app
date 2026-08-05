@@ -1,0 +1,119 @@
+@Metadata.layer: #CORE
+
+annotate entity zc_travel_tab with
+{
+
+  @UI.facet: [
+    {
+      id: 'TravelDetails',
+      type: #IDENTIFICATION_REFERENCE,
+      label: 'Travel Details',
+      position: 10
+    },
+    {
+      id: 'BookingDetails',
+      type: #LINEITEM_REFERENCE,
+      label: 'Bookings',
+      targetElement: '_Booking',
+      position: 20
+    }
+  ]
+
+  @EndUserText.label: 'Travel UUID'
+  @UI.hidden: true
+  TravelUUID;
+
+  @EndUserText.label: 'Travel ID'
+  @UI.lineItem: [{ position: 10 }]
+  @UI.identification: [{ position: 10 }]
+  @UI.selectionField: [{ position: 10 }]
+  TravelId;
+
+  @EndUserText.label: 'Employee ID'
+  @UI.lineItem: [{ position: 20 }]
+  @UI.identification: [{ position: 20 }]
+  @UI.selectionField: [{ position: 20 }]
+  EmployeeId;
+
+  @EndUserText.label: 'Employee Name'
+  @UI.lineItem: [{ position: 30 }]
+  @UI.identification: [{ position: 30 }]
+  EmployeeName;
+
+  @EndUserText.label: 'Start Date'
+  @UI.lineItem: [{ position: 40 }]
+  @UI.identification: [{ position: 40 }]
+  @UI.selectionField: [{ position: 30 }]
+  StartDate;
+
+  @EndUserText.label: 'End Date'
+  @UI.lineItem: [{ position: 50 }]
+  @UI.identification: [{ position: 50 }]
+  EndDate;
+
+  @EndUserText.label: 'Currency'
+  @UI.identification: [{ position: 60 }]
+  CurrencyCode;
+
+  @EndUserText.label: 'Booking Fee'
+  @UI.lineItem: [{ position: 60 }]
+  @UI.identification: [{ position: 70 }]
+  BookingFee;
+
+  @EndUserText.label: 'Total Price'
+  @UI.lineItem: [{ position: 70 }]
+  @UI.identification: [{ position: 80 }]
+  TotalPrice;
+
+  @EndUserText.label: 'Status'
+
+  @UI.lineItem: [{ position: 80 }]
+
+  @UI.identification: [
+    { position: 90 },
+
+    {
+      position: 100,
+      type: #FOR_ACTION,
+      dataAction: 'SubmitTravel',
+      label: 'Submit'
+    },
+
+    {
+      position: 110,
+      type: #FOR_ACTION,
+      dataAction: 'ApproveTravel',
+      label: 'Approve'
+    },
+
+    {
+      position: 120,
+      type: #FOR_ACTION,
+      dataAction: 'RejectTravel',
+      label: 'Reject'
+    }
+  ]
+
+  @UI.selectionField: [{ position: 40 }]
+
+  Status;
+
+  @UI.hidden: true
+  RequestorUser;
+
+  @UI.hidden: true
+  CreatedBy;
+
+  @UI.hidden: true
+  CreatedAt;
+
+  @UI.hidden: true
+  LastChangedBy;
+
+  @UI.hidden: true
+  LastChangedAt;
+
+  @UI.hidden: true
+  LocalLastChangedAt;
+
+}

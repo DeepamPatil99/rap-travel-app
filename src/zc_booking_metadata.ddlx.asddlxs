@@ -1,0 +1,61 @@
+@Metadata.layer: #CORE
+
+annotate entity zc_booking_tab with
+{
+
+  @UI.facet: [
+    {
+      id: 'BookingDetails',
+      type: #IDENTIFICATION_REFERENCE,
+      label: 'Booking Details',
+      position: 10
+    }
+  ]
+
+  @UI.hidden: true
+  BookingUuid;
+
+  @UI.hidden: true
+  TravelUuid;
+
+  @EndUserText.label: 'Carrier'
+  @UI.lineItem: [{ position: 10 }]
+  @UI.identification: [{ position: 10 }]
+  CarrierId;
+
+  @EndUserText.label: 'Flight Number'
+  @UI.lineItem: [{ position: 20 }]
+  @UI.identification: [{ position: 20 }]
+  FlightNo;
+
+  @EndUserText.label: 'Flight Date'
+  @UI.lineItem: [{ position: 30 }]
+  @UI.identification: [{ position: 30 }]
+  FlightDate;
+
+  @EndUserText.label: 'Booking Price'
+  @UI.lineItem: [{ position: 40 }]
+  @UI.identification: [{ position: 40 }]
+  BookingPrice;
+
+  @EndUserText.label: 'Currency'
+  @UI.lineItem: [{ position: 50 }]
+  @UI.identification: [{ position: 50 }]
+  CurrencyCode;
+
+  @UI.hidden: true
+  CreatedBy;
+
+  @UI.hidden: true
+  CreatedAt;
+
+  @UI.hidden: true
+  LastChangedBy;
+
+  @UI.hidden: true
+  LastChangedAt;
+
+  @UI.hidden: true
+  LocalLastChangedAt;
+
+}

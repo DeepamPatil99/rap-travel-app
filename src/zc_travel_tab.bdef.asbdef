@@ -1,0 +1,23 @@
+projection;
+strict ( 2 );
+
+define behavior for zc_travel_tab //alias <alias_name>
+{
+  use create;
+  use update;
+  use delete;
+
+  use action SubmitTravel;
+  use action ApproveTravel;
+  use action RejectTravel;
+
+  use association _Booking { create; }
+}
+
+define behavior for zc_booking_tab //alias <alias_name>
+{
+  use update;
+  use delete;
+
+  use association _Travel;
+}
